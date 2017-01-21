@@ -1,8 +1,0 @@
-prefix=/home/ruijia/drone_ws/install
-
-Name: ardrone_autonomy
-Description: Description of ardrone_autonomy
-Version: 1.4.1
-Cflags: -I/home/ruijia/drone_ws/install/include
-Libs: -L/home/ruijia/drone_ws/install/lib 
-Requires: roscpp image_transport message_runtime sensor_msgs std_srvs tf camera_info_manager
