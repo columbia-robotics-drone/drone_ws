@@ -8,7 +8,8 @@ Drone team Google Drive: https://drive.google.com/open?id=0BxN1-ObwqraBMHNTQ29nd
 Download the CURC-VMWare.zip folder from the Drone team Google Drive, extract it, File > Open CURC-VMWare.ovf in VMWare, and run the VM. Feel free to adjust VM settings (RAM, storage, etc.) as appropriate for your personal computer. You may need to relax OVF settings for the import to work. 
 
 #### VirtualBox
-Download the CURC.ova file from the Drone team Google Drive, File > Open the .ova in VirtualBox, and run the VM. Feel free to adjust VM settings as appropriate for your personal computer.
+Download the CURC.vdi file from the Drone team Google Drive, File > Open the .vdi in VirtualBox, and run the VM. Feel free to adjust VM settings as appropriate for your personal computer.
+Full instructions are available in the README document where the virtual machine images can be found.
 
 ### OR
 
