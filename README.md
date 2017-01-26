@@ -7,9 +7,12 @@ Drone team Google Drive: https://drive.google.com/open?id=0BxN1-ObwqraBMHNTQ29nd
 #### VMWare
 Download the CURC-VMWare.zip folder from the Drone team Google Drive, extract it, File > Open CURC-VMWare.ovf in VMWare, and run the VM. Feel free to adjust VM settings (RAM, storage, etc.) as appropriate for your personal computer. You may need to relax OVF settings for the import to work. 
 
-#### VirtualBox
+#### VirtualBox (Recommended)
 Download the CURC.vdi file from the Drone team Google Drive, File > Open the .vdi in VirtualBox, and run the VM. Feel free to adjust VM settings as appropriate for your personal computer.
 Full instructions are available in the README document where the virtual machine images can be found.
+
+#### NOTE
+A Linux system is NOT required to develop, just to simulate your applications. We also have a VirtualBox instance of the image running in the MakerSpace, so you can write in your favorite text editor, clone your git repo to the clean image, and then test in the simulator running on the iMac there.
 
 ### OR
 
