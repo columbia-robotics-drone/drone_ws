@@ -108,7 +108,6 @@ roslaunch tum_ardrone tum_ardrone.launch
 Key assignments for keyboard control: 
 http://wiki.ros.org/tum_ardrone/drone_gui#Keyboard_Control
 
-
 > KB control requires the GUI window to have focus, but NOT the upper-left text field (press ECS)
 
     q,a: fly up & down.
