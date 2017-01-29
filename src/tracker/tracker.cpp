@@ -1,30 +1,6 @@
-// The contents of this file are in the public domain. See LICENSE_FOR_EXAMPLE_PROGRAMS.txt
-/*
-
-    This example program shows how to find frontal human faces in an image and
-    estimate their pose.  The pose takes the form of 68 landmarks.  These are
-    points on the face such as the corners of the mouth, along the eyebrows, on
-    the eyes, and so forth.  
-    
-
-    This example is essentially just a version of the face_landmark_detection_ex.cpp
-    example modified to use OpenCV's VideoCapture object to read from a camera instead 
-    of files.
-
-
-    Finally, note that the face detector is fastest when compiled with at least
-    SSE2 instructions enabled.  So if you are using a PC with an Intel or AMD
-    chip then you should enable at least SSE2 instructions.  If you are using
-    cmake to compile this program you can enable them by using one of the
-    following commands when you create the build project:
-        cmake path_to_dlib_root/examples -DUSE_SSE2_INSTRUCTIONS=ON
-        cmake path_to_dlib_root/examples -DUSE_SSE4_INSTRUCTIONS=ON
-        cmake path_to_dlib_root/examples -DUSE_AVX_INSTRUCTIONS=ON
-    This will set the appropriate compiler options for GCC, clang, Visual
-    Studio, or the Intel compiler.  If you are using another compiler then you
-    need to consult your compiler's manual to determine how to enable these
-    instructions.  Note that AVX is the fastest but requires a CPU from at least
-    2011.  SSE4 is the next fastest and is supported by most current machines.  
+/* 
+For now much of this code originated from the examples provided with dlib,
+namely: video_tracking_ex and webcam_face_pose_ex.
 */
 
 #include <dlib/opencv.h>
@@ -42,6 +18,15 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
+    if (argc != 4)
+    {
+        cout << "Usage: ./tracker <xstart> <ystart> <size>" << endl;
+        cout << "(xstart, ystart) = bounding box start (top-left corner)" << endl;
+        cout << "size = size of bounding box as square" << endl;
+        cout << "Ex: ./tracker 500 400 100" << endl;
+        return 1;
+    }
+
     try
     {
         cv::VideoCapture cap(0);
@@ -56,12 +41,6 @@ int main(int argc, char** argv)
         int size = atoi(argv[3]);        
         
         image_window win;
-
-//        // Load face detection and pose estimation models.
-//        frontal_face_detector detector = get_frontal_face_detector();
-//        shape_predictor pose_model;
-//        deserialize("shape_predictor_68_face_landmarks.dat") >> pose_model;
-
         cv::Mat temp;
         cap >> temp;
         cv_image<bgr_pixel> cimg(temp);
@@ -82,27 +61,14 @@ int main(int argc, char** argv)
             // while using cimg.
             cv_image<bgr_pixel> cimg(temp);
             tracker.update(cimg);
-//            // Detect faces 
-//            std::vector<rectangle> faces = detector(cimg);
-//            // Find the pose of each face.
-//            std::vector<full_object_detection> shapes;
-//            for (unsigned long i = 0; i < faces.size(); ++i)
-//                shapes.push_back(pose_model(cimg, faces[i]));
-//
-//            // Display it all on the screen
+
+            // Display it all on the screen
             win.clear_overlay();
             win.set_image(cimg);
-//            win.add_overlay(render_face_detections(shapes));
             win.add_overlay(tracker.get_position());
         }
     }
-    catch(serialization_error& e)
-    {
-        cout << "You need dlib's default face landmarking model file to run this example." << endl;
-        cout << "You can get it from the following URL: " << endl;
-        cout << "   http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2" << endl;
-        cout << endl << e.what() << endl;
-    }
+
     catch(exception& e)
     {
         cout << e.what() << endl;
